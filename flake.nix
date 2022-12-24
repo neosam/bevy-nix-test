@@ -30,6 +30,7 @@
           buildInputs = buildInputs;
           postInstall = ./post_install.sh;
           LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath buildInputs;
+          appName = "bevy-nix-test";
         };
 
         # For `nix develop`:
