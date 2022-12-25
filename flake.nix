@@ -26,9 +26,16 @@
           nativeBuildInputs = with pkgs; [
             pkg-config
             llvmPackages.bintools # To use lld linker
+            makeWrapper
           ];
           buildInputs = buildInputs;
-          postInstall = ./post_install.sh;
+          postInstall = ''
+            wrapProgram $out/bin/$appName \
+              --set LD_LIBRARY_PATH $LD_LIBRARY_PATH \
+              --set CARGO_MANIFEST_DIR $out/share/$appName
+            mkdir -p $out/share/$appName
+            cp -r assets $out/share/$appName
+          '';
           LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath buildInputs;
           appName = "bevy-nix-test";
         };
@@ -36,6 +43,7 @@
         # For `nix develop`:
         devShell = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [ rustc cargo ];
+          LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath buildInputs;
         };
       }
     );

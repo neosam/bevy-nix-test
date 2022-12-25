@@ -192,6 +192,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "bevy-nix-test"
+version = "0.1.0"
+dependencies = [
+ "bevy",
+]
+
+[[package]]
 name = "bevy_animation"
 version = "0.9.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -381,13 +388,6 @@ dependencies = [
  "bevy_input",
  "bevy_utils",
  "gilrs",
-]
-
-[[package]]
-name = "bevy_github_ci_template"
-version = "0.1.0"
-dependencies = [
- "bevy",
 ]
 
 [[package]]
